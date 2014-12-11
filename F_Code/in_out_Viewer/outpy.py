@@ -1,0 +1,25 @@
+"item_lists":
+	[
+		{"data": "20141201 ","money_type": "金钱 ","type": "回收 ","category": "游戏中 ","amount": "204142367 "},
+		{"data": "20141201 ","money_type": "金钱 ","type": "回收 ","category": "开箱子等 ","amount": "20332100 "},
+		{"data": "20141201 ","money_type": "金钱 ","type": "回收 ","category": "生产线 ","amount": "72916000 "},
+		{"data": "20141201 ","money_type": "金钱 ","type": "回收 ","category": "每日签到 ","amount": "56497000 "},
+		{"data": "20141201 ","money_type": "金钱 ","type": "回收 ","category": "挑战首胜奖励 ","amount": "13868000 "},
+		{"data": "20141201 ","money_type": "金钱 ","type": "回收 ","category": "战队排位赛任务系统 ","amount": "387500 "},
+		{"data": "20141201 ","money_type": "金钱 ","type": "回收 ","category": "在线奖励 ","amount": "86756000 "},
+		{"data": "20141201 ","money_type": "金钱 ","type": "回收 ","category": "人拉人 ","amount": "4445000 "},
+		{"data": "20141201 ","money_type": "金钱 ","type": "回收 ","category": "运维补偿 ","amount": "970000 "},
+		{"data": "20141201 ","money_type": "金钱 ","type": "回收 ","category": "升级礼包 ","amount": "153883000 "},
+		{"data": "20141201 ","money_type": "金钱 ","type": "回收 ","category": "开服礼包 ","amount": "108350000 "},
+		{"data": "20141201 ","money_type": "金钱 ","type": "回收 ","category": "手机绑定奖励 ","amount": "37480000 "},
+		{"data": "20141201 ","money_type": "金钱 ","type": "回收 ","category": "序列号获取礼品 ","amount": "4419000 "},
+		{"data": "20141201 ","money_type": "军需券 ","type": "回收 ","category": "日常任务 ","amount": "6546600 "},
+		{"data": "20141201 ","money_type": "军需券 ","type": "回收 ","category": "货币物品获取 ","amount": "7605600 "},
+		{"data": "20141201 ","money_type": "军需券 ","type": "回收 ","category": "战队任务每日奖励 ","amount": "2912500 "},
+		{"data": "20141201 ","money_type": "金钱 ","type": "回收 ","category": "未录入 ","amount": "4648390 "},
+		{"data": "20141201 ","money_type": "金钱 ","type": "回收 ","category": "角色升级 ","amount": "173227500 "},
+		{"data": "20141201 ","money_type": "金钱 ","type": "回收 ","category": "重置科技点 ","amount": "1143000 "},
+		{"data": "20141201 ","money_type": "金钱 ","type": "回收 ","category": "升研究所 ","amount": "57885000 "},
+		{"data": "20141201 ","money_type": "金钱 ","type": "回收 ","category": "商城购买 ","amount": "218100200 "},
+		{"data": "20141201 ","money_type": "军需券 ","type": "回收 ","category": "军团商店购买 ","amount": "4080000 "}
+	]
