@@ -17,7 +17,7 @@ class inOutViewer():
 			print("Connection to sqlite db error", "\n", e.args[0])  
 			return  
 		self.sqlite_cursor = self.conn.cursor()
-		print "done"
+#		print "done"
 		
 		#如果存在表先删除  
 		sql_del="DROP TABLE IF EXISTS inout;"  
@@ -38,13 +38,14 @@ class inOutViewer():
 		self.conn.commit()  
 		
 	def getCategoryDic(self):
-		category_file = open("inout_category.txt",'r')
+		category_file = open("category.txt",'r')
 		categorylines = category_file.readlines()
 
 		for line in categorylines:
 			catedic = line.split()
 			if catedic[0] != "id":
-				self.category_dic[catedic[0]] = catedic[1].decode("utf-8")
+				self.category_dic[catedic[0]] = catedic[1].decode("gbk")
+				#self.category_dic[catedic[0]] = catedic[1].decode("utf-8")
 				#self.category_dic.append({"id": catedic[0], "value": catedic[1]})
 		category_file.close()
 
@@ -55,22 +56,23 @@ class inOutViewer():
 		inout_file = open(filename, "r")
 		inout_lines = inout_file.readlines()
 		for lines in inout_lines:
-			print lines
+#			print lines
 			m = lines.split()
 #			if m[0] != "dateid" and m[0] == str(dateid):
 			if m[0] != "dateid":
 				inoutDataUnit = {}
 				inoutDataUnit["dateid"] = m[0]
 #				inoutDataUnit["type"] = (m[1] == 1)? u"投放" : u"回收"
-				inoutDataUnit["type"] = (m[1] == 1 and u"投放" or u"回收")
+				inoutDataUnit["type"] = (m[1] == "1" and u"投放" or u"回收")
 				inoutDataUnit["money_type"] = money_type.get(m[2], u"未录入")
 				inoutDataUnit["category"] = self.category_dic.get(m[3], u"未录入")
+				print(m[3], inoutDataUnit["category"])
 				inoutDataUnit["amount"] = m[4]
 				self.inout_data.append(inoutDataUnit)
 				#添加一条记录  
 				#sql_insert="INSERT INTO inout values("+ inoutDataUnit["dateid"] + ", " + str(m[1]) + ", " + str(m[2]) + ", " + str(m[3]) + ", " + str(m[4]) + ");"
 				sql_insert="INSERT INTO inout values("+ inoutDataUnit["dateid"] + ", \"" + inoutDataUnit["type"] + "\", \"" + inoutDataUnit["money_type"] + "\", \"" + inoutDataUnit["category"] + "\", " + str(m[4]) + ");"
-				print sql_insert  
+#				print sql_insert  
 				try:  
 					self.sqlite_cursor.execute(sql_insert)  
 				except sqlite3.Error,e:  
@@ -105,5 +107,7 @@ if __name__ == '__main__':
 	m = inOutViewer()
 	m.sqliteHandler()
 	m.getCategoryDic()
-	m.generateData("inout.txt", "20141122")
+	m.generateData("inout_1122_1127.txt", "20141122")
+	m.generateData("inout_1128_1130.txt", "20141122")
+	m.generateData("inout_1201_1219.txt", "20141122")
 	m.topy("outpy.py", "20141201")
