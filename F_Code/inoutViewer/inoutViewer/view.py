@@ -1,5 +1,7 @@
+#coding:utf-8
 from django.http import HttpResponse
 from django.template import Template, Context
+from django.shortcuts import render_to_response
 import datetime
 
 def inoutviewer_hello(req):
@@ -36,13 +38,19 @@ def inout_template(req):
 	
 	 <p>Sincerely,<br />{{ company }}</p>"""
 
-	 t = Template(raw_template)
-	 c = Context({'person_name': 'John Smith',
-	 	'company': 'Outdoor Equipment',
-	 	'ship_date': datetime.date(2009, 4, 2),
-	 	'ordered_warranty': False
-	 	})
-	 html = t.render(c)
+	t = Template(raw_template)
+	c = Context({'person_name': 'John Smith',
+		'company': 'Outdoor Equipment',
+		'ship_date': datetime.date(2009, 4, 2),
+		'ordered_warranty': False
+		})
+	html = t.render(c)
 
-	 return HttpResponse(html)
+	return HttpResponse(html)
 
+#from outpy import item_lists
+from inoutdbview.models import Inout
+
+def inout_version1(req):
+	m = Inout.objects.filter(money_type = "金钱", type = "投放").order_by('amount')
+	return render_to_response('inout.html', {'item_lists':m})

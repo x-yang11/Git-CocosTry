@@ -11,5 +11,6 @@ urlpatterns = patterns('',
     url(r'^hello/$', inoutviewer_hello),
     url(r'^time/$', inoutviewer_time),
     url(r'^time/plus/(\d{1,3})/$', inoutviewer_time_offset),
-    url(r'^thanks/$', inout_template),
+    #url(r'^thanks/$', inout_template),
+    url(r'^inout/$', inout_version1),
 )

@@ -1,0 +1,20 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">  
+<html lang="en">  
+<head>  
+    <title>11.22-12.19之间金币军需券投放/回收数据列表</title>  
+</head>  
+<body>  
+    <table>  
+    <tr><th>日期</th><th>货币类型</th><th>投放/回收</th><th>分类</th><th>总量</th></tr>  
+    {% for lines in item_lists %}  
+        <tr>  
+        <td>{{ lines.date }}</td>  
+        <td>{{ lines.money_type }}</td>  
+		<td>{{ lines.type }}</td>  
+        <td>{{ lines.category }}</td>  
+		<td>{{ lines.amount }}</td>
+        </tr>  
+    {% endfor %}  
+    </table>  
+</body>  
+</html>  

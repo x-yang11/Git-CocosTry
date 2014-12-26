@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'inoutdbview',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -59,14 +60,14 @@ WSGI_APPLICATION = 'inoutViewer.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'inout.db'),
     }
 }
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-cn'
 
 TIME_ZONE = 'UTC'
 
@@ -75,6 +76,10 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+TEMPLATE_DIRS = (
+    'I:\Git-CocosTry\F_Code\inoutViewer',
+    )
 
 
 # Static files (CSS, JavaScript, Images)
