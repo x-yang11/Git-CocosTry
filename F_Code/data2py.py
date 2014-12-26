@@ -8,8 +8,8 @@ DB_SQLITE_NAME = "inout.db"
 
 class inOutViewer():
 	category_dic = {}
-	
-	
+	inout_data = []
+	data_count = 0
 	def sqliteHandler(self):
 		try:
 			self.conn = sqlite3.connect(DB_SQLITE_NAME)
@@ -29,7 +29,7 @@ class inOutViewer():
 		self.conn.commit()
 
 
-		sql_add = "CREATE TABLE inout(date VARCHAR(8), type VARCHAR(128), money_type VARCHAR(128), category VARCHAR(128),amount INTEGER );" 
+		sql_add = "CREATE TABLE inout(id INTEGER PRIMARY Key, date VARCHAR(8), type VARCHAR(128), money_type VARCHAR(128), category VARCHAR(128),amount INTEGER );" 
 		try:  
 			self.sqlite_cursor.execute(sql_add)  
 		except sqlite3.Error,e:  
@@ -52,7 +52,7 @@ class inOutViewer():
 		#print self.category_dic["-1"]
 
 	def generateData(self, filename, dateid):
-		self.inout_data = []
+#		self.inout_data = []
 		inout_file = open(filename, "r")
 		inout_lines = inout_file.readlines()
 		for lines in inout_lines:
@@ -61,6 +61,8 @@ class inOutViewer():
 #			if m[0] != "dateid" and m[0] == str(dateid):
 			if m[0] != "dateid":
 				inoutDataUnit = {}
+				self.data_count += 1
+				inoutDataUnit["id"] = self.data_count
 				inoutDataUnit["dateid"] = m[0]
 #				inoutDataUnit["type"] = (m[1] == 1)? u"投放" : u"回收"
 				inoutDataUnit["type"] = (m[1] == "1" and u"投放" or u"回收")
@@ -71,7 +73,8 @@ class inOutViewer():
 				self.inout_data.append(inoutDataUnit)
 				#添加一条记录  
 				#sql_insert="INSERT INTO inout values("+ inoutDataUnit["dateid"] + ", " + str(m[1]) + ", " + str(m[2]) + ", " + str(m[3]) + ", " + str(m[4]) + ");"
-				sql_insert="INSERT INTO inout values("+ inoutDataUnit["dateid"] + ", \"" + inoutDataUnit["type"] + "\", \"" + inoutDataUnit["money_type"] + "\", \"" + inoutDataUnit["category"] + "\", " + str(m[4]) + ");"
+#				sql_insert="INSERT INTO inout values("+ inoutDataUnit["dateid"] + ", \"" + inoutDataUnit["type"] + "\", \"" + inoutDataUnit["money_type"] + "\", \"" + inoutDataUnit["category"] + "\", " + str(m[4]) + ");"
+				sql_insert = "INSERT INTO inout values( %d, \"%s\", \"%s\", \"%s\", \"%s\", %d);" % (inoutDataUnit["id"], inoutDataUnit["dateid"], inoutDataUnit["type"], inoutDataUnit["money_type"], inoutDataUnit["category"], int(m[4]))
 #				print sql_insert  
 				try:  
 					self.sqlite_cursor.execute(sql_insert)  
@@ -81,7 +84,7 @@ class inOutViewer():
 		self.conn.commit()
 
 	def topy(self, filename, dateid):
-		txtfile = open(filename, "w")
+		txtfile = open(filename, "r+")
 #		linestowrite = []
 		txtfile.write("\"item_lists\":\n")
 		txtfile.write("\t[\n")
@@ -108,6 +111,8 @@ if __name__ == '__main__':
 	m.sqliteHandler()
 	m.getCategoryDic()
 	m.generateData("inout_1122_1127.txt", "20141122")
+#	m.topy("outpy.py", "20141201")
 	m.generateData("inout_1128_1130.txt", "20141122")
+#	m.topy("outpy.py", "20141201")
 	m.generateData("inout_1201_1219.txt", "20141122")
 	m.topy("outpy.py", "20141201")
