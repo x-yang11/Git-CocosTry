@@ -52,5 +52,5 @@ def inout_template(req):
 from inoutdbview.models import Inout
 
 def inout_version1(req):
-	m = Inout.objects.filter(money_type = "金钱", type = "投放").order_by('amount')
+	m = Inout.objects.filter(money_type = "金钱", type = "投放", category = "游戏中").order_by('amount')
 	return render_to_response('inout.html', {'item_lists':m})
