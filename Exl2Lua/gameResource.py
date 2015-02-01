@@ -32,3 +32,11 @@ for i in range(2,sheetLength - 1):
 	dataLine = dataSheet.row_values(i)
 	cdata.writelines("%s[\"%s\"] = {\n\twidth = %d,\n\theight = %d,\n\txStartx = %d,\n\tyStart = %d,\n\txEnd = %d,\n\tyEnd = %d\n\t}\n" %(cdataName, dataLine[0], dataLine[1], dataLine[2], dataLine[4], dataLine[6], dataLine[8], dataLine[10]))
 cdata.close()
+
+
+>> cal_bug
+r^2 = 0.468973
+F = 2.649426
+alpha = 0.112460
+unkown = 951.719169
+m2z = 317.239723
